@@ -1,0 +1,32 @@
+title = "Hall 11"
+refresh_seconds = 30      # how often to fetch and redraw
+full_refresh_every = 20   # partial redraws between full (flashing) refreshes, to clear ghosting
+flip = false              # set true if the board shows upside down in the case
+
+# Rows top to bottom. Three rows fit comfortably.
+# kind = "shuttle": NTU campus shuttle; stop is the NTU stop name (ntu-bus --stops Red lists them), route is Red/Blue/Green/Brown/Grey
+# kind = "public":  public bus; stop is the 5-digit LTA stop code (on the stop sign; ntu-bus --stops 199 lists the 179/179A/199 ones). Uses LTA DataMall when
+#                   LTA_ACCOUNT_KEY is set, otherwise NTU Omnibus's copy (179/179A/199 only).
+# dest = "..." is a short destination shown under the route badge when two rows or fewer are on screen.
+# hide_when_empty = true drops the row while it has no buses (it stays, showing "no data", if fetching fails).
+
+[[rows]]
+kind = "shuttle"
+label = "Red"
+dest = "Campus Loop"
+stop = "Hall 11 Blk 55"
+route = "Red"
+
+[[rows]]
+kind = "shuttle"
+label = "Grey"
+stop = "Hall 11 Blk 55"
+route = "Grey"
+hide_when_empty = true    # temporary exam-period loop: only shown while it has buses
+
+[[rows]]
+kind = "public"
+label = "199"
+dest = "Boon Lay Int"
+stop = "27199"            # Hall 11
+service = "199"

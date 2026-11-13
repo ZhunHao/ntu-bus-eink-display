@@ -1,0 +1,26 @@
+[package]
+name = "ntu-bus"
+version = "0.1.0"
+edition = "2021"
+description = "Bus arrival board for a Raspberry Pi Zero 2 W + Waveshare 2.13\" Touch e-Paper HAT"
+
+[dependencies]
+chrono = { version = "0.4.45", default-features = false, features = ["clock", "std"] }
+embedded-graphics = "0.8.2"
+png = "0.18.1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1.0.154"
+toml = "~1.1.8"
+u8g2-fonts = "0.8.0"
+ureq = { version = "~3.4.2", features = ["json"] }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+rppal = "0.22.1"
+
+[profile.release]
+opt-level = "s"
+lto = true
+strip = true
+# A panic on any thread ends the process, and systemd restarts it, instead of leaving the board
+# running without its touch thread
+panic = "abort"

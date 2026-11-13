@@ -1,0 +1,16 @@
+[Unit]
+Description=Bus arrival e-paper board
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+# Change to your Pi username. It needs the gpio, spi and i2c groups (Pi OS's first user has them).
+User=pi
+ExecStart=/usr/local/bin/ntu-bus --config /etc/ntu-bus/config.toml
+# Optional: LTA_ACCOUNT_KEY=... to get public buses from LTA DataMall instead of NTU's relay
+EnvironmentFile=-/etc/ntu-bus/env
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
